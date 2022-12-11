@@ -4,14 +4,15 @@ const homePage = require('../../support/pom/homePage')
     describe('Login', () => {
     it('should not be able to login with none matching credentials', () => {
         cy.visit('/')
-        homePage.signInBtn.click({force: true})
+        homePage.signInBtn.click( {force: true})
+        cy.wait(2000)
         loginPage.login('testdata@gmail.com', '123123')
         //Verify error message
         loginPage.failedAlertHeader.should('be.visible').should('have.text', 'Alert')
         loginPage.failedAlertBody.should('be.visible').should('have.text', 'Invalid Email or password.')
     })
 
-        it.only('should be able to login with matching credentials', () => {
+        it('should be able to login with matching credentials', () => {
             cy.visit('/')
             homePage.signInBtn.click({force: true})
             loginPage.login('dinostake@gmail.com', '12121212')
@@ -24,10 +25,10 @@ const homePage = require('../../support/pom/homePage')
                 .should('contain.text', 'Logout')
         })
 
-        it('should not be able to login when 2 fields are empty', () => {
+        it.only('should not be able to login when 2 fields are empty', () => {
             cy.visit('/')
             homePage.signInBtn.click({force: true})
-            loginPage.login('', '')
+            loginPage.emptylogin('12','12')
             //Verify error message
             loginPage.failedAlertHeader.should('be.visible').should('have.text', 'Alert')
             loginPage.failedAlertBody.should('be.visible').should('have.text', 'Invalid Email or password.')

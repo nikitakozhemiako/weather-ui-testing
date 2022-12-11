@@ -1,4 +1,8 @@
 class Login {
+
+    get header () {
+        return cy.get('h3')
+    }
     get email () {
         return cy.get('.new_user').find('[placeholder="Enter email"]')
     }
@@ -30,6 +34,12 @@ class Login {
     login(username, password) {
         this.email.type(username)
         this.password.type(password)
+        this.submitBtn.click()
+    }
+
+    emptylogin(username,password) {
+        this.email.type(username).clear()
+        this.password.type(password).clear()
         this.submitBtn.click()
     }
 }

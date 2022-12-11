@@ -2,6 +2,14 @@ const loginPage = require('../../support/pom/loginPage')
 const homePage = require('../../support/pom/homePage')
 const guidePage = require('../../support/pom/guidePage')
 const apiPage = require('../../support/pom/apiPage')
+const dashboardPage = require('../../support/pom/dashboardPage')
+const marketplacePage = require('../../support/pom/marketplacePage')
+const pricingPage = require('../../support/pom/pricingPage')
+const mapsPage = require('../../support/pom/mapsPage')
+const ourInitiativesPage = require('../../support/pom/ourInitiativesPage')
+const partnersPage = require('../../support/pom/partnersPage')
+const blogPage = require('../../support/pom/blogPage')
+const forBusinessPage = require('../../support/pom/forBusinessPage')
 
 describe('NavBar Labels exist', () => {
     beforeEach(() => {
@@ -26,7 +34,7 @@ describe('NavBar Labels exist', () => {
         guidePage.header.should('have.text', 'Weather data in a fast and easy-to-use way')
     })
 
-    it.only('API button visible and redirects to right link', () => {
+    it('API button visible and redirects to right link', () => {
         homePage.apiBtn
             .should('be.visible')
             .should('have.text', 'API')
@@ -36,48 +44,79 @@ describe('NavBar Labels exist', () => {
     })
 
     it('Dashboard button visible and redirects to right link', () => {
-        homePage.dashboardBtn.should('be.visible')
-            .should('have.attr', 'href', '/weather-dashboard')
+        homePage.dashboardBtn
+            .should('be.visible')
+            .should('have.text', 'Dashboard')
+            .click( {force: true})
+        dashboardPage.header.should('have.text', 'OpenWeather Dashboard')
+
     })
 
     it('Marketplace button visible and redirects to right link', () => {
-        homePage.marketplaceBtn.should('be.visible')
-            .should('have.attr', 'href', 'https://home.openweathermap.org/marketplace')
+        homePage.marketplaceBtn
+            .should('be.visible')
+            .should('have.text', 'Marketplace')
+        //     .click({force:true})
+        // Opens in new tab and test failing
+        // marketplacePage.header.should('have.text', 'Custom Weather Products')
+
     })
 
     it('Pricing button visible and redirects to right link', () => {
-        homePage.pricingBtn.should('be.visible')
-            .should('have.attr', 'href', '/price')
+        homePage.pricingBtn
+            .should('be.visible')
+            .should('have.text', 'Pricing')
+            .click({force:true})
+        pricingPage.header.should('contain', 'Pricing')
     })
 
     it('Maps button visible and redirects to right link', () => {
-        homePage.mapsBtn.should('be.visible')
-            .should('have.attr', 'href', '/weathermap')
+        homePage.mapsBtn
+            .should('be.visible')
+            .should('have.text', 'Maps')
+            .click({force:true})
+        mapsPage.wrapper.should('be.visible')
+
     })
 
     it('Our Initiatives button visible and redirects to right link', () => {
-        homePage.ourInitiativesBtn.should('be.visible')
-            .should('have.attr', 'href', '/our-initiatives')
+        homePage.ourInitiativesBtn
+            .should('be.visible')
+            .should('have.text', 'Our Initiatives')
+            .click()
+        ourInitiativesPage.header.should('have.text', 'Our initiatives')
     })
 
     it('Partners button visible and redirects to right link', () => {
-        homePage.partnersBtn.should('be.visible')
-            .should('have.attr', 'href', '/examples')
+        homePage.partnersBtn
+            .should('be.visible')
+            .should('have.text', 'Partners')
+            .click()
+        partnersPage.header.should('have.text', 'Partners and solutions')
     })
 
     it('Blog button visible and redirects to right link', () => {
-        homePage.blogBtn.should('be.visible')
-            .should('have.attr', 'href', 'https://openweather.co.uk/blog/category/weather')
+        homePage.blogBtn
+            .should('be.visible')
+            .should('have.text', 'Blog')
+        //     .click()
+        // blogPage.categories.should('be.visible')
     })
 
     it('For Business visible and redirects to right link', () => {
-        homePage.forBusinessBtn.should('be.visible')
-            .should('have.attr', 'href', 'https://openweather.co.uk')
+        homePage.forBusinessBtn
+            .should('be.visible')
+            .should('have.text', 'For Business')
+        //     .click()
+        // forBusinessPage.header.should('have.text', 'OpenWeatherfor business')
     })
 
-    it('Sign in visible and redirects to right link', () => {
-        homePage.signInBtn.should('be.visible')
-            .should('have.attr', 'href', 'https://openweathermap.org/home/sign_in')
+    it.only('Sign in visible and redirects to right link', () => {
+        homePage.signInBtn
+            // .should('be.visible')
+            .should('contains', 'Sign In')
+            .click()
+        loginPage.header.should('have.text', 'Sign In To Your Account')
     })
 
     it('Support is visible and redirects to right link', () => {

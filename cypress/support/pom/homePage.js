@@ -49,7 +49,7 @@ class HomePage {
     }
 
     get signInBtn() {
-        return cy.get('.user-li').contains('Sign in')
+        return cy.get('#desktop-menu').contains('Sign in')
     }
 
     get supportBtn () {
