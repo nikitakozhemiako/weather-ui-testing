@@ -77,4 +77,4 @@ class HomePage {
 
 }
 
-module.exports = new HomePage()
+module.exports = new HomePage ()
