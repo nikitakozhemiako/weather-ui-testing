@@ -113,9 +113,9 @@ describe('NavBar Labels exist', () => {
 
     it.only('Sign in visible and redirects to right link', () => {
         homePage.signInBtn
-            // .should('be.visible')
+            .should('be.visible')
             .should('contains', 'Sign In')
-            .click()
+            .click({force: true})
         loginPage.header.should('have.text', 'Sign In To Your Account')
     })
 
