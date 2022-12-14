@@ -7,5 +7,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
     },
     baseUrl: 'https://openweathermap.org/',
+    chromeWebSecurity: false,
   },
 });

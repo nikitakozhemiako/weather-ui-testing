@@ -30,7 +30,7 @@ describe('NavBar Labels exist', () => {
         homePage.guideBtn
             .should('be.visible')
             .should('have.text', 'Guide')
-            .click( {force: true})
+            .click({force: true})
         guidePage.header.should('have.text', 'Weather data in a fast and easy-to-use way')
     })
 
@@ -38,7 +38,7 @@ describe('NavBar Labels exist', () => {
         homePage.apiBtn
             .should('be.visible')
             .should('have.text', 'API')
-            .click( {force: true})
+            .click({force: true})
         apiPage.header.should('have.text', 'Weather API')
 
     })
@@ -47,7 +47,7 @@ describe('NavBar Labels exist', () => {
         homePage.dashboardBtn
             .should('be.visible')
             .should('have.text', 'Dashboard')
-            .click( {force: true})
+            .click({force: true})
         dashboardPage.header.should('have.text', 'OpenWeather Dashboard')
 
     })
@@ -66,7 +66,7 @@ describe('NavBar Labels exist', () => {
         homePage.pricingBtn
             .should('be.visible')
             .should('have.text', 'Pricing')
-            .click({force:true})
+            .click({force: true})
         pricingPage.header.should('contain', 'Pricing')
     })
 
@@ -74,7 +74,7 @@ describe('NavBar Labels exist', () => {
         homePage.mapsBtn
             .should('be.visible')
             .should('have.text', 'Maps')
-            .click({force:true})
+            .click({force: true})
         mapsPage.wrapper.should('be.visible')
 
     })
@@ -95,23 +95,27 @@ describe('NavBar Labels exist', () => {
         partnersPage.header.should('have.text', 'Partners and solutions')
     })
 
-    it('Blog button visible and redirects to right link', () => {
-        homePage.blogBtn
+
+    it.only('Blog button visible and redirects to right link', () => {
+        homePage.blogBtn.invoke('removeAttr', 'target')
             .should('be.visible')
             .should('have.text', 'Blog')
-        //     .click()
-        // blogPage.categories.should('be.visible')
+            .click()
+                cy.origin('https://openweather.co.uk/blog/category/weather', () => {
+                    cy.get('#blog-categories').should('be.visible')
+                    // blogPage.categories.should('be.visible')
+                })
     })
+
 
     it('For Business visible and redirects to right link', () => {
-        homePage.forBusinessBtn
+        homePage.forBusinessBtn.invoke('removeAttr', 'target')
             .should('be.visible')
             .should('have.text', 'For Business')
-        //     .click()
-        // forBusinessPage.header.should('have.text', 'OpenWeatherfor business')
+        forBusinessPage.header.should('have.text', 'OpenWeatherfor business')
     })
 
-    it.only('Sign in visible and redirects to right link', () => {
+    it('Sign in visible and redirects to right link', () => {
         homePage.signInBtn
             .should('be.visible')
             .should('contains', 'Sign In')
@@ -123,6 +127,7 @@ describe('NavBar Labels exist', () => {
         homePage.supportBtn.should('exist')
         homePage.verifySupportBtn()
     })
+
 
 })
 
