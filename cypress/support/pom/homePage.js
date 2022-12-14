@@ -49,7 +49,7 @@ class HomePage {
     }
 
     get signInBtn() {
-        return cy.get('#desktop-menu').find('[href="https://openweathermap.org/home/sign_in"]')
+        return cy.get('.user-li > a')
         // return cy.get('#desktop-menu').contains('Sign in')
     }
 
