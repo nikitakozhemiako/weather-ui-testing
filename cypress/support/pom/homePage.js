@@ -1,4 +1,5 @@
 class HomePage {
+
     get logo () {
         return cy.get('.logo')
     }
@@ -91,6 +92,14 @@ class HomePage {
 
     get placeholderInSearchField () {
         return cy.get('.search-container').find('[placeholder="Search city"]')
+    }
+
+    get differentWeatherBtn () {
+        return cy.get('.controls').contains('Different Weather?')
+    }
+
+    get geoBtn () {
+        return cy.get('.controls .control-el')
     }
 
 

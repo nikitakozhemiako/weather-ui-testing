@@ -10,6 +10,7 @@ const ourInitiativesPage = require('../../support/pom/ourInitiativesPage')
 const partnersPage = require('../../support/pom/partnersPage')
 const blogPage = require('../../support/pom/blogPage')
 const forBusinessPage = require('../../support/pom/forBusinessPage')
+const popUpDifferentWeather = require('../../support/pom/popUpDifferentWeather')
 
 describe('NavBar Labels exist and redirects to right pages', () => {
     beforeEach(() => {
@@ -136,7 +137,7 @@ describe('NavBar Labels exist and redirects to right pages', () => {
     })
 })
 
-describe('Header Image ', () => {
+describe('Header and Search Input', () => {
     beforeEach(() => {
         cy.visit('/')
         cy.wait(2000)
@@ -155,17 +156,11 @@ describe('Header Image ', () => {
             .should('have.text', 'Weather forecasts, nowcasts and history in a fast and elegant way')
     })
 
-    // it.only('h2 text exists and visible', () =>{
-    //     homePage.search2('London')
-    //
-    // })
-
-
-    it.only('Search operates as expected', () => {
+    it('Search operates as expected', () => {
+        homePage.placeholderInSearchField
+            .should('have.attr', 'placeholder', 'Search city')
 
         const city = ['Berlin', 'Dubai', 'London', 'Test City']
-
-        homePage.placeholderInSearchField.should('have.attr', 'placeholder', 'Search city')
 
         cy.wrap(city).each(city => {
             homePage.searchField.type(city)
@@ -181,9 +176,27 @@ describe('Header Image ', () => {
             }
         })
     })
+})
 
 
+describe('Buttons for Weather', () => {
 
+    beforeEach(() => {
+        cy.visit('/')
+        cy.wait(2000)
+    })
+
+    it.only('Geo Button', () => {
+        homePage.geoBtn.click()
+        
+    })
+
+
+    it('Different Weather Button', () => {
+        homePage.differentWeatherBtn.click()
+        // popUpDifferentWeather.popUpFull.should('be.visible')
+        popUpDifferentWeather.header.should('be.visible')
+    })
 
 
 })
