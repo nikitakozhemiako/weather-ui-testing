@@ -99,7 +99,27 @@ class HomePage {
     }
 
     get geoBtn () {
-        return cy.get('.controls .control-el')
+        return cy.get('.controls .control-el').eq(0)
+    }
+
+    get widgetNotification () {
+        return cy.get('.widget-notification')
+    }
+
+    get metricBtn () {
+        return cy.get('.option').eq(0)
+    }
+
+    get imperialBtn () {
+        return cy.get('.option').eq(1)
+    }
+
+    get currentTemperatureBlock () {
+        return cy.get('.heading')
+    }
+
+    get eightDayForecastDayList () {
+        return cy.get('.day-list')
     }
 
 

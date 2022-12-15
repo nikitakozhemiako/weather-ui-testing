@@ -186,17 +186,45 @@ describe('Buttons for Weather', () => {
         cy.wait(2000)
     })
 
-    it.only('Geo Button', () => {
-        homePage.geoBtn.click()
-        
-    })
+    it('Geo Button after press block', () => {
+        homePage.geoBtn
+            .should('be.visible')
+            .click()
+        homePage.widgetNotification
+            .should('be.visible')
+            .should('have.text', 'Location unavailable. Displaying default location: London')
+        // Make assertion when pointing on button its getting from gray to white
 
+    })
 
     it('Different Weather Button', () => {
-        homePage.differentWeatherBtn.click()
-        // popUpDifferentWeather.popUpFull.should('be.visible')
+        homePage.differentWeatherBtn
+            .should('be.visible')
+            .click()
         popUpDifferentWeather.header.should('be.visible')
+        // popUpDifferentWeather.popUpFull.should('be.visible')
     })
+
+    it('Metric Btn is visible', () => {
+        homePage.metricBtn
+            .should('be.visible')
+            .should('have.text', 'Metric: °C, m/s')
+    })
+
+    it.only('Imperial Btn is visible', () => {
+        homePage.imperialBtn
+            .should('be.visible')
+            .should('have.text', 'Imperial: °F, mph')
+            .click()
+        homePage.currentTemperatureBlock.should('not.contain.text', 'C')
+        homePage.currentTemperatureBlock.should('contain.text', 'F')
+        homePage.eightDayForecastDayList.each((eightDayForecastDayList) => {
+            cy.wrap(eightDayForecastDayList).should('contain.text', 'F')
+            // Сделать ForEach что бы шло по каждому элементу и чекало что там есть F
+        })
+    })
+
+
 
 
 })
