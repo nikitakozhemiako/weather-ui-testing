@@ -11,7 +11,7 @@ const partnersPage = require('../../support/pom/partnersPage')
 const blogPage = require('../../support/pom/blogPage')
 const forBusinessPage = require('../../support/pom/forBusinessPage')
 
-describe('NavBar Labels exist', () => {
+describe('NavBar Labels exist and redirects to right pages', () => {
     beforeEach(() => {
         cy.visit('/')
         cy.wait(2000)
@@ -56,7 +56,7 @@ describe('NavBar Labels exist', () => {
         homePage.marketplaceBtn.invoke('removeAttr', 'target')
             .should('be.visible')
             .should('have.text', 'Marketplace')
-            .click({force:true})
+            .click({force: true})
         // Works fine with invoke
         marketplacePage.header.should('have.text', 'Custom Weather Products')
 
@@ -101,11 +101,11 @@ describe('NavBar Labels exist', () => {
             .should('be.visible')
             .should('have.text', 'Blog')
             .click()
-                cy.origin('https://openweather.co.uk/blog/category/weather', () => {
-                    cy.get('#blog-categories').should('be.visible')
-                    // blogPage.categories.should('be.visible')
-                    // passing only when invoke and origin
-                })
+        cy.origin('https://openweather.co.uk/blog/category/weather', () => {
+            cy.get('#blog-categories').should('be.visible')
+            // blogPage.categories.should('be.visible')
+            // passing only when invoke and origin
+        })
     })
 
 
@@ -134,6 +134,56 @@ describe('NavBar Labels exist', () => {
         homePage.supportBtn.should('exist')
         homePage.verifySupportBtn()
     })
+})
+
+describe('Header Image ', () => {
+    beforeEach(() => {
+        cy.visit('/')
+        cy.wait(2000)
+    })
+
+    it('header image exists and visible', () =>{
+        homePage.headerImage.should('be.visible')
+    })
+
+    it('h1 text exists and visible', () =>{
+        homePage.h1Text.should('be.visible').should('have.text', 'OpenWeather')
+    })
+
+    it('h2 text exists and visible', () =>{
+        homePage.h2Text.should('be.visible')
+            .should('have.text', 'Weather forecasts, nowcasts and history in a fast and elegant way')
+    })
+
+    // it.only('h2 text exists and visible', () =>{
+    //     homePage.search2('London')
+    //
+    // })
+
+
+    it.only('Search operates as expected', () => {
+
+        const city = ['Berlin', 'Dubai', 'London', 'Test City']
+
+        homePage.placeholderInSearchField.should('have.attr', 'placeholder', 'Search city')
+
+        cy.wrap(city).each(city => {
+            homePage.searchField.type(city)
+            homePage.buttonSearch.click()
+            homePage.searchField.clear()
+            cy.wait(500)
+            if(city === 'Test City') {
+                homePage.cityNotFound
+                    .should('be.visible')
+                    .should('have.text', 'Not found. To make search more precise put the city\'s name, comma, 2-letter country code (ISO3166).')
+            } else {
+                homePage.searchDropDown.should('be.visible')
+            }
+        })
+    })
+
+
+
 
 
 })

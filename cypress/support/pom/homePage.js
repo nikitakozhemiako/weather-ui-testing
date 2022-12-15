@@ -61,6 +61,38 @@ class HomePage {
         return cy.get('#support-dropdown-menu')
     }
 
+    get headerImage () {
+        return cy.get('.section.where-to')
+    }
+
+    get h1Text () {
+        return cy.get('h1').find('.orange-text')
+    }
+
+    get h2Text () {
+        return cy.get('h2').find('.white-text')
+    }
+
+    get searchField () {
+        return cy.get('.search-container')
+    }
+
+    get buttonSearch () {
+        return cy.get('button[data-v-68963a64]')
+    }
+
+    get searchDropDown () {
+        return cy.get('ul[data-v-68963a64]')
+    }
+
+    get cityNotFound () {
+        return cy.get('.sub.not-found.notFoundOpen')
+    }
+
+    get placeholderInSearchField () {
+        return cy.get('.search-container').find('[placeholder="Search city"]')
+    }
+
 
     //This function is to type any input in search field
     search(input){
@@ -76,6 +108,14 @@ class HomePage {
     }
 
 
+    search2 (input) {
+        this.searchField.type(input)
+        this.buttonSearch.click()
+        this.searchDropDown.should('be.visible')
+    }
+
+
 }
+
 
 module.exports = new HomePage ()
