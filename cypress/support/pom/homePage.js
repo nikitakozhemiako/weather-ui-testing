@@ -1,10 +1,15 @@
 class HomePage {
 
+    // homePage = {
+    //     btn: () => {
+    //         HomePage.homePage.btn
+    //     }
+    // }
     get logo () {
         return cy.get('.logo')
     }
     get searchField () {
-        return cy.get('#desktop-menu').find('[role="search"]')
+        return cy.get('#desktop-menu').find('[placeholder="Weather in your city"]')
     }
     get searchBtn () {
         return cy.get('#first-level-nav').find('[role="search"]').find('[placeholder="Weather in your city"]')
@@ -119,14 +124,13 @@ class HomePage {
     }
 
     get eightDayForecastDayList () {
-        return cy.get('.day-list')
+        return cy.get('li[data-v-5ed3171e]')
     }
 
 
     //This function is to type any input in search field
     search(input){
-        this.searchField.type(input)
-        this.searchBtn.type('{enter}')
+        this.searchBtn.type(input).type('{enter}')
     }
 
     //This function verifies SupportBtn is a dropdown and after click has 'drop-down visible' attribute in CSS
@@ -134,13 +138,6 @@ class HomePage {
         this.supportBtn.click()
         this.supportDropDown.invoke('attr', 'class')
             .should('contain', 'dropdown-visible')
-    }
-
-
-    search2 (input) {
-        this.searchField.type(input)
-        this.buttonSearch.click()
-        this.searchDropDown.should('be.visible')
     }
 
 

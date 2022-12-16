@@ -1,6 +1,6 @@
 class Business {
     get header () {
-        return cy.get('h1')
+        return cy.get('.mobile-padding').first()
     }
 }
 

@@ -58,7 +58,6 @@ describe('NavBar Labels exist and redirects to right pages', () => {
             .should('be.visible')
             .should('have.text', 'Marketplace')
             .click({force: true})
-        // Works fine with invoke
         marketplacePage.header.should('have.text', 'Custom Weather Products')
 
     })
@@ -102,25 +101,17 @@ describe('NavBar Labels exist and redirects to right pages', () => {
             .should('be.visible')
             .should('have.text', 'Blog')
             .click()
-        cy.origin('https://openweather.co.uk/blog/category/weather', () => {
-            cy.get('#blog-categories').should('be.visible')
-            // blogPage.categories.should('be.visible')
-            // passing only when invoke and origin
-        })
+            blogPage.categories.should('be.visible')
     })
 
 
-    it.skip('For Business visible and redirects to right link', () => {
+    it('For Business visible and redirects to right link', () => {
         homePage.forBusinessBtn
-            // .invoke('removeAttr', 'target')
+            .invoke('removeAttr', 'target')
             .should('be.visible')
             .should('have.text', 'For Business')
             .click()
-        cy.origin('https://openweather.co.uk/', () => {
-            cy.get('h1').should('contains', 'OpenWeatherfor business')
-            //forBusinessPage.header.should('have.text', 'OpenWeatherfor business')
-            // dont pass at all
-        })
+            forBusinessPage.header.should('be.visible')
     })
 
     it('Sign in visible and redirects to right link', () => {
@@ -161,7 +152,7 @@ describe('Header and Search Input', () => {
             .should('have.attr', 'placeholder', 'Search city')
 
         const city = ['Berlin', 'Dubai', 'London', 'Test City']
-
+        // city[2] Math.random
         cy.wrap(city).each(city => {
             homePage.searchField.type(city)
             homePage.buttonSearch.click()
@@ -211,7 +202,7 @@ describe('Buttons for Weather', () => {
             .should('have.text', 'Metric: °C, m/s')
     })
 
-    it.only('Imperial Btn is visible', () => {
+    it.only('Imperial Btn is visible and when click on it temperature changes to F', () => {
         homePage.imperialBtn
             .should('be.visible')
             .should('have.text', 'Imperial: °F, mph')
@@ -220,7 +211,6 @@ describe('Buttons for Weather', () => {
         homePage.currentTemperatureBlock.should('contain.text', 'F')
         homePage.eightDayForecastDayList.each((eightDayForecastDayList) => {
             cy.wrap(eightDayForecastDayList).should('contain.text', 'F')
-            // Сделать ForEach что бы шло по каждому элементу и чекало что там есть F
         })
     })
 
