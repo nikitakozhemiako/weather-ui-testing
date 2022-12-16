@@ -12,6 +12,13 @@ class PopUpDifferentWeather  {
         return cy.get('li[data-v-3cdad65e]')
     }
 
+    get exitButton () {
+        return cy.get('.icon-close')
+    }
+
+    get moreOptionsDropDown () {
+        return cy.get('.more-options')
+    }
 }
 
 module.exports = new PopUpDifferentWeather()

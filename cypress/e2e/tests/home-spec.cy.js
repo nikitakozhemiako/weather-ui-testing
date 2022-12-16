@@ -188,14 +188,6 @@ describe('Buttons for Weather', () => {
 
     })
 
-    it('Different Weather Button', () => {
-        homePage.differentWeatherBtn
-            .should('be.visible')
-            .click()
-        popUpDifferentWeather.header.should('be.visible')
-        // popUpDifferentWeather.popUpFull.should('be.visible')
-    })
-
     it('Metric Btn is visible', () => {
         homePage.metricBtn
             .should('be.visible')
@@ -217,19 +209,39 @@ describe('Buttons for Weather', () => {
             cy.wrap(eightDayForecastDayList).should('contain.text', 'F')
         })
     })
+})
 
-    it.only('Icons in Different Weather are visible', () => {
-        homePage.differentWeatherBtn.click()
+describe('pop-up different weather', () => {
+    beforeEach(() => {
+        cy.visit('/')
+        cy.wait(2000)
+        homePage.differentWeatherBtn.should('be.visible').click()
+    })
+
+    it('Different Weather Button', () => {
+        popUpDifferentWeather.header
+            .should('be.visible')
+            .should('contain.text', 'Different weather')
+    })
+
+    it('Icons in Different Weather are visible and text written as expected', () => {
         popUpDifferentWeather.iconsWeather.each((iconsWeather) => {
             cy.wrap(iconsWeather).should('be.visible')
+            const iconText = iconsWeather.text()
+            cy.wrap(iconsWeather).should('have.text', iconText)
         })
     })
 
-    it.only('Text under icons In Different Weather Pop Up window are correct', () => {
-
+    it('Exit button is visible and clickable', () => {
+        popUpDifferentWeather.exitButton
+            .should('be.visible')
+            .click()
+        homePage.guideBtn.should('be.visible')
     })
 
+    it.only('More Options visible and clickable', () => {
 
+    })
 
 
 })
