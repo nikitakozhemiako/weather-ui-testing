@@ -200,9 +200,13 @@ describe('Buttons for Weather', () => {
         homePage.metricBtn
             .should('be.visible')
             .should('have.text', 'Metric: °C, m/s')
+        homePage.currentTemperatureBlock.should('contain.text', 'C')
+        homePage.eightDayForecastDayList.each((eightDayForecastDayList) => {
+            cy.wrap(eightDayForecastDayList).should('contain.text', 'C')
+        })
     })
 
-    it.only('Imperial Btn is visible and when click on it temperature changes to F', () => {
+    it('Imperial Btn is visible and when click on it temperature changes to F', () => {
         homePage.imperialBtn
             .should('be.visible')
             .should('have.text', 'Imperial: °F, mph')
@@ -212,6 +216,17 @@ describe('Buttons for Weather', () => {
         homePage.eightDayForecastDayList.each((eightDayForecastDayList) => {
             cy.wrap(eightDayForecastDayList).should('contain.text', 'F')
         })
+    })
+
+    it.only('Icons in Different Weather are visible', () => {
+        homePage.differentWeatherBtn.click()
+        popUpDifferentWeather.iconsWeather.each((iconsWeather) => {
+            cy.wrap(iconsWeather).should('be.visible')
+        })
+    })
+
+    it.only('Text under icons In Different Weather Pop Up window are correct', () => {
+
     })
 
 

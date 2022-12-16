@@ -1,10 +1,11 @@
 class HomePage {
 
     // homePage = {
-    //     btn: () => {
+    //     differentWeatherPopUp: () => {
     //         HomePage.homePage.btn
     //     }
     // }
+
     get logo () {
         return cy.get('.logo')
     }
@@ -126,6 +127,7 @@ class HomePage {
     get eightDayForecastDayList () {
         return cy.get('li[data-v-5ed3171e]')
     }
+
 
 
     //This function is to type any input in search field
