@@ -221,3 +221,20 @@ describe('pop-up different weather', () => {
     popUpDifferentWeather.emailLabel.should('be.visible').should('contain.text', 'Email')
   })
 })
+
+
+describe('test', () => {
+  beforeEach(() => {
+    cy.visit('/')
+    cy.wait(2000)
+  })
+  it.only('test', () => {
+    cy.get('a[href="/api/one-call-3"]').eq(0).invoke('text').as('scoreA')
+    cy.get('a[href="/api/one-call-3"]').eq(2).invoke('text').then(parseInt).as('scoreB')
+    cy.then(function () {
+      expect(this.scoreA).to.be.equal('One Call API 3.0')
+    })
+  })
+})
+
+
