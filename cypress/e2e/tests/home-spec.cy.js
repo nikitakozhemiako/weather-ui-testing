@@ -239,11 +239,30 @@ describe('pop-up different weather', () => {
         homePage.guideBtn.should('be.visible')
     })
 
-    it.only('More Options visible and clickable', () => {
-
+    it('More Options visible and clickable and after click changes name', () => {
+        popUpDifferentWeather.moreOptionsDropDown
+            .should('be.visible')
+            .should('have.text', ' More options ')
+            .click()
+        popUpDifferentWeather.moreOptionsDropDown
+            .should('have.text', ' Less options ')
+        popUpDifferentWeather.divMoreOptions
+            .should('not.have.attr', 'style', 'display: none;')
     })
 
+    it.only('Labels under More Options', () => {
+        popUpDifferentWeather.moreOptionsDropDown.click()
+        popUpDifferentWeather.temperatureLabel
+            .should('be.visible')
+            .should('contain.text', 'Temperature')
+        popUpDifferentWeather.windLabel
+            .should('be.visible')
+            .should('contain.text', 'Wind')
+        popUpDifferentWeather.emailLabel
+            .should('be.visible')
+            .should('contain.text', 'Email')
 
+        })
 })
 
 

@@ -19,6 +19,22 @@ class PopUpDifferentWeather  {
     get moreOptionsDropDown () {
         return cy.get('.more-options')
     }
+
+    get divMoreOptions () {
+        return cy.get('div[data-v-3cdad65e][style]')
+    }
+
+    get temperatureLabel () {
+        return cy.get('div[data-v-3cdad65e][style]').find('.section-container').eq(0)
+    }
+
+    get windLabel () {
+        return cy.contains('[data-v-3cdad65e]', 'Wind')
+    }
+
+    get emailLabel () {
+        return cy.contains('[data-v-3cdad65e]', 'Email')
+    }
 }
 
 module.exports = new PopUpDifferentWeather()
