@@ -1,5 +1,6 @@
 const loginPage = require('../../support/pom/loginPage')
 const homePage = require('../../support/pom/homePage')
+import 'dotenv/config'
 
 describe('Login', () => {
   it('should not be able to login with none matching credentials', () => {
@@ -12,10 +13,10 @@ describe('Login', () => {
     loginPage.failedAlertBody.should('be.visible').should('have.text', 'Invalid Email or password.')
   })
 
-  it('should be able to login with matching credentials', () => {
+  it.only('should be able to login with matching credentials', () => {
     cy.visit('/')
     homePage.signInBtn.click({force: true})
-    loginPage.login('dinostake@gmail.com', '12121212')
+    loginPage.login(Cypress.env('email'), (Cypress.env('password')))
     //Verify Notice message is visible
     loginPage.successAlertHeader.should('be.visible').should('contain.text', 'Notice')
     //Verify LogOut button exists.
@@ -25,7 +26,7 @@ describe('Login', () => {
       .should('contain.text', 'Logout')
   })
 
-  it.only('should not be able to login when 2 fields are empty', () => {
+  it('should not be able to login when 2 fields are empty', () => {
     cy.visit('/')
     homePage.signInBtn.click({force: true})
     loginPage.emptylogin('12', '12')

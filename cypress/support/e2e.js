@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import 'dotenv/config'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   if (err.message.includes('')) return false
