@@ -1,7 +1,7 @@
 class Maps {
-    get wrapper () {
-        return cy.get('.wrapper')
-    }
+  get wrapper() {
+    return cy.get('.wrapper')
+  }
 }
 
-module.exports = new Maps ()
+module.exports = new Maps()

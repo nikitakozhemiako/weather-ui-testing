@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "prettier cypress/ --check",
+    "format": "prettier cypress/ --write --list-different"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cypress": "^12.0.0"
+  },
+  "devDependencies": {
+    "prettier": "2.8.1"
   }
 }

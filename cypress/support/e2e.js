@@ -17,9 +17,7 @@
 import './commands'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
-    if(err.message.includes(''))
-
-    return false
+  if (err.message.includes('')) return false
 })
 
 // Alternatively you can use CommonJS syntax:

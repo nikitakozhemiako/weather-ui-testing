@@ -1,7 +1,7 @@
-class Api  {
-    get header () {
-        return cy.get('h1')
-    }
+class Api {
+  get header() {
+    return cy.get('h1')
+  }
 }
 
-module.exports = new Api ()
+module.exports = new Api()
