@@ -264,12 +264,22 @@ describe('pop-up different weather', () => {
       cy.visit('/')
       cy.wait(2000)
     })
-    it.only('All blocks in the body are visible', () => {
+    it('All blocks in the body are visible', () => {
       homePage.weatherBlock.should('be.visible')
       homePage.mapBlock.should('be.visible')
       homePage.hourlyForecastBlock.should('be.visible')
       homePage.eightForecastDayBlock.should('be.visible')
     })
+
+    it.only('8 day forecast operates as expected', () => {
+      homePage.eightDayForecastDayList.each(day => {
+        cy.wrap(day).click()
+        homePage.dayListBlock.should('have.attr','style', "display: none;")
+        homePage.iconDownBtn.click()
+      })
+    })
+
+
   })
 
   //Data Source dropdown doesnt have selectors ??

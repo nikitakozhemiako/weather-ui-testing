@@ -146,6 +146,14 @@ class HomePage {
     return cy.get('.daily-container.block.mobile-padding')
   }
 
+  get dayListBlock() {
+    return cy.get('.day-list')
+  }
+
+  get iconDownBtn(){
+    return cy.get('.scrolling-container .chevron-container')
+  }
+
   //This function is to type any input in search field
   search(input) {
     this.searchBtn.type(input).type('{enter}')
