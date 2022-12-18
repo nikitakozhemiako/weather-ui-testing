@@ -260,8 +260,15 @@ describe('pop-up different weather', () => {
 })
 
   describe('Body', () => {
-    it.only('Body visible', () => {
-
+    beforeEach(() => {
+      cy.visit('/')
+      cy.wait(2000)
+    })
+    it.only('All blocks in the body are visible', () => {
+      homePage.weatherBlock.should('be.visible')
+      homePage.mapBlock.should('be.visible')
+      homePage.hourlyForecastBlock.should('be.visible')
+      homePage.eightForecastDayBlock.should('be.visible')
     })
   })
 

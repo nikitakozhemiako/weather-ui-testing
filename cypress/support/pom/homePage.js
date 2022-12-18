@@ -131,7 +131,19 @@ class HomePage {
   }
 
   get weatherBlock() {
-    return cy.get('.current-container.mobile-padding')
+    return cy.get('[class="current-container mobile-padding"]')
+  }
+
+  get mapBlock() {
+    return cy.get('.map-section')
+  }
+
+  get hourlyForecastBlock() {
+    return cy.get('.full-container')
+  }
+
+  get eightForecastDayBlock() {
+    return cy.get('.daily-container.block.mobile-padding')
   }
 
   //This function is to type any input in search field
