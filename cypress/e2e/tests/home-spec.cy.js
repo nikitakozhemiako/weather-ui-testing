@@ -198,6 +198,17 @@ describe('pop-up different weather', () => {
     })
   })
 
+  it('Randomly Selects One of iconsWeather Buttons and checks their class is active', () => {
+    popUpDifferentWeather.moreOptionsDropDown.click()
+    popUpDifferentWeather.iconsWeather
+        .its('length')
+        .then((n) => Cypress._.random(0, n - 1))
+        .then((k) => {
+          popUpDifferentWeather.iconsWeather.eq(k).click()
+              .should('have.class', 'activeIcon')
+        })
+  })
+
   it('Exit button is visible and clickable', () => {
     popUpDifferentWeather.exitButton.should('be.visible').click()
     homePage.guideBtn.should('be.visible')
@@ -227,7 +238,7 @@ describe('pop-up different weather', () => {
     //scrollIntoView Спросить как работает
   })
 
-  it.only('Radio Button Labels are correct', () => {
+  it('Radio Button Labels are correct', () => {
     popUpDifferentWeather.moreOptionsDropDown.click()
     popUpDifferentWeather.radioButtonSwitch.each(radioButtonLabels => {
       cy.wrap(radioButtonLabels).should('be.visible')
@@ -236,7 +247,19 @@ describe('pop-up different weather', () => {
     })
   })
 
-  it.only('Radio Button buttons becoming gray when clicking on them', () => {})
+  it('Radio Button buttons becoming gray when clicking on them', () => {
+    popUpDifferentWeather.moreOptionsDropDown.click()
+    popUpDifferentWeather.lightButton.should('have.class', 'active', true)
+        popUpDifferentWeather.moderateButton.click()
+    popUpDifferentWeather.lightButton.should('not.have.class', 'active', true)
+    popUpDifferentWeather.moderateButton.should('have.class', 'active', true)
+        popUpDifferentWeather.strongButton.click()
+    popUpDifferentWeather.moderateButton.should('not.have.class', 'active', true)
+    popUpDifferentWeather.strongButton.should('have.class', 'active', true)
+  })
+
+  //Data Source dropdown doesnt have selectors ??
+
 })
 
 // describe('test', () => {

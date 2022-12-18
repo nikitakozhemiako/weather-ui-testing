@@ -46,6 +46,18 @@ class PopUpDifferentWeather {
   get radioButtonSwitch() {
     return cy.get('.radio-buttons-switch div')
   }
+
+  get lightButton () {
+    return cy.get('.radio-buttons-switch > :nth-child(1)')
+  }
+
+  get moderateButton () {
+    return cy.get('.radio-buttons-switch > :nth-child(2)')
+  }
+
+  get strongButton () {
+    return cy.get('.radio-buttons-switch > :nth-child(3)')
+  }
 }
 
 module.exports = new PopUpDifferentWeather()
