@@ -217,24 +217,38 @@ describe('pop-up different weather', () => {
     popUpDifferentWeather.temperatureLabel
       .should('be.visible')
       .should('contain.text', 'Temperature')
-    popUpDifferentWeather.windLabel.should('be.visible').should('contain.text', 'Wind')
-    popUpDifferentWeather.emailLabel.should('be.visible').should('contain.text', 'Email')
+    popUpDifferentWeather.windLabel.should('be.visible').should('have.text', 'Wind')
+    popUpDifferentWeather.emailLabel.should('be.visible').should('have.text', 'Email')
+    popUpDifferentWeather.dataSourceLabel.should('be.visible').should('have.text', 'Data source')
+    popUpDifferentWeather.anyAdditionalInfoLabel
+      .scrollIntoView()
+      .should('be.visible')
+      .should('have.text', 'Any additional information')
+    //scrollIntoView Спросить как работает
   })
-})
 
-
-describe('test', () => {
-  beforeEach(() => {
-    cy.visit('/')
-    cy.wait(2000)
-  })
-  it.only('test', () => {
-    cy.get('a[href="/api/one-call-3"]').eq(0).invoke('text').as('scoreA')
-    cy.get('a[href="/api/one-call-3"]').eq(2).invoke('text').then(parseInt).as('scoreB')
-    cy.then(function () {
-      expect(this.scoreA).to.be.equal('One Call API 3.0')
+  it.only('Radio Button Labels are correct', () => {
+    popUpDifferentWeather.moreOptionsDropDown.click()
+    popUpDifferentWeather.radioButtonSwitch.each(radioButtonLabels => {
+      cy.wrap(radioButtonLabels).should('be.visible')
+      const radioButtonText = radioButtonLabels.text()
+      cy.wrap(radioButtonLabels).should('have.text', radioButtonText)
     })
   })
+
+  it.only('Radio Button buttons becoming gray when clicking on them', () => {})
 })
 
-
+// describe('test', () => {
+//   beforeEach(() => {
+//     cy.visit('/')
+//     cy.wait(2000)
+//   })
+//   it.only('test', () => {
+//     cy.get('a[href="/api/one-call-3"]').eq(0).invoke('text').as('scoreA')
+//     cy.get('a[href="/api/one-call-3"]').eq(2).invoke('text').then(parseInt).as('scoreB')
+//     cy.then(function () {
+//       expect(this.scoreA).to.be.equal('One Call API 3.0')
+//     })
+//   })
+// })

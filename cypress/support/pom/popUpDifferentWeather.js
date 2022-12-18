@@ -34,6 +34,18 @@ class PopUpDifferentWeather {
   get emailLabel() {
     return cy.contains('[data-v-3cdad65e]', 'Email')
   }
+
+  get dataSourceLabel() {
+    return cy.contains('[data-v-3cdad65e]', 'Data source')
+  }
+
+  get anyAdditionalInfoLabel() {
+    return cy.contains('[data-v-3cdad65e]', 'Any additional information')
+  }
+
+  get radioButtonSwitch() {
+    return cy.get('.radio-buttons-switch div')
+  }
 }
 
 module.exports = new PopUpDifferentWeather()

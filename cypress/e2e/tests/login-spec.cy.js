@@ -16,7 +16,7 @@ describe('Login', () => {
   it.only('should be able to login with matching credentials', () => {
     cy.visit('/')
     homePage.signInBtn.click({force: true})
-    loginPage.login(Cypress.env('email'), (Cypress.env('password')))
+    loginPage.login(Cypress.env('email'), Cypress.env('password'))
     //Verify Notice message is visible
     loginPage.successAlertHeader.should('be.visible').should('contain.text', 'Notice')
     //Verify LogOut button exists.
