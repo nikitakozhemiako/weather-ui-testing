@@ -130,6 +130,10 @@ class HomePage {
     return cy.get('li[data-v-5ed3171e]')
   }
 
+  get weatherBlock() {
+    return cy.get('.current-container.mobile-padding')
+  }
+
   //This function is to type any input in search field
   search(input) {
     this.searchBtn.type(input).type('{enter}')

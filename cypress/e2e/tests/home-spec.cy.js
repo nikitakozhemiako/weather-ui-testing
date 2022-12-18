@@ -257,10 +257,15 @@ describe('pop-up different weather', () => {
     popUpDifferentWeather.moderateButton.should('not.have.class', 'active', true)
     popUpDifferentWeather.strongButton.should('have.class', 'active', true)
   })
+})
+
+  describe('Body', () => {
+    it.only('Body visible', () => {
+
+    })
+  })
 
   //Data Source dropdown doesnt have selectors ??
-
-})
 
 // describe('test', () => {
 //   beforeEach(() => {
