@@ -123,12 +123,12 @@ describe('Header and Search Input', () => {
       .should('have.text', 'Weather forecasts, nowcasts and history in a fast and elegant way')
   })
 
-  it('Search operates as expected', () => {
+  it.only('Search operates as expected', () => {
     homePage.placeholderInSearchField.should('have.attr', 'placeholder', 'Search city')
 
-    const city = ['Berlin', 'Dubai', 'London', 'Test City']
+    const cities = ['Berlin', 'Dubai', 'London', 'Test City']
     // city[2] Math.random
-    cy.wrap(city).each(city => {
+    cities.forEach(city => {
       homePage.searchField.type(city)
       homePage.buttonSearch.click()
       homePage.searchField.clear()
@@ -271,7 +271,7 @@ describe('pop-up different weather', () => {
       homePage.eightForecastDayBlock.should('be.visible')
     })
 
-    it.only('8 day forecast operates as expected', () => {
+    it('8 day forecast operates as expected', () => {
       homePage.eightDayForecastDayList.each(day => {
         cy.wrap(day).click()
         homePage.dayListBlock.should('have.attr','style', "display: none;")
@@ -281,6 +281,9 @@ describe('pop-up different weather', () => {
 
 
   })
+
+
+
 
   //Data Source dropdown doesnt have selectors ??
 
