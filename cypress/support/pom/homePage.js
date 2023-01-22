@@ -8,9 +8,7 @@ class HomePage {
   get logo() {
     return cy.get('.logo')
   }
-  get searchField() {
-    return cy.get('#desktop-menu').find('[placeholder="Weather in your city"]')
-  }
+
   get searchBtn() {
     return cy
       .get('#first-level-nav')
@@ -152,6 +150,10 @@ class HomePage {
 
   get iconDownBtn(){
     return cy.get('.scrolling-container .chevron-container')
+  }
+
+  get dr (){
+
   }
 
   //This function is to type any input in search field
