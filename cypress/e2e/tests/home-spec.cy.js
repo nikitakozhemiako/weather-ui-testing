@@ -285,6 +285,18 @@ describe('pop-up different weather', () => {
 
 
 
+    describe('API', () => {
+      it('first test', () => {
+        cy.request({
+          method: 'GET',
+          url: 'jkgshdgh',
+        }).then( () => {
+          expect(response.body).have.property('url')
+        })
+      })
+    })
+
+
   //Data Source dropdown doesnt have selectors ??
 
 // describe('test', () => {
